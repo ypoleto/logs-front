@@ -11,18 +11,16 @@ import { ref, onMounted } from 'vue';
 import TablesPage from './tablesPage.vue';
 
 let socket;
-let mensagens = ref([]);
 let dadosAssociation = ref([]);
 let dadosAuthentication = ref([]);
 let dadosHandshake = ref([]);
 
 
 onMounted(() => {
-  socket = new WebSocket('ws://localhost:3001');
+  socket = new WebSocket('ws://192.168.7.3:3000');
 
   socket.onopen = () => {
-    console.log("WebSocket conectador!");
-    mensagens.value = ['✅ Conectado ao WebSocket!'];
+    console.log('✅ Conectado ao WebSocket!');
   };
 
   socket.onmessage = (event) => {
@@ -31,39 +29,53 @@ onMounted(() => {
       if (msg && typeof msg === 'object' && 'tipo' in msg && 'dados' in msg) {
         switch (msg.tipo) {
           case 'association':
-            dadosAssociation.value = (msg.dados);
+            dadosAssociation.value = msg.dados;
+            localStorage.setItem('dadosAssociation', JSON.stringify(msg.dados));
             break;
           case 'authentication':
-            dadosAuthentication.value = (msg.dados);
+            dadosAuthentication.value = msg.dados;
+            localStorage.setItem('dadosAuthentication', JSON.stringify(msg.dados));
             break;
           case 'handshake':
-            dadosHandshake.value = (msg.dados);
-            console.log(dadosHandshake.value);
-            
+            dadosHandshake.value = msg.dados;
+            localStorage.setItem('dadosHandshake', JSON.stringify(msg.dados));
             break;
           default:
             console.warn('Tipo de dado desconhecido:', msg.tipo);
         }
-
-        // Para depuração ou exibição genérica:
-        mensagens.value = [`📦 ${msg.dados.length} documentos recebidos de ${msg.tipo}`];
       } else {
-        mensagens.value = ['Formato inesperado de dados.'];
+        console.log('Formato inesperado de dados.');
       }
     } catch (error) {
       console.error('Erro ao processar mensagem:', error);
-      mensagens.value = ['Erro ao processar dados recebidos.'];
+      console.log('Erro ao processar dados recebidos.');
     }
   };
 
   socket.onclose = () => {
-    mensagens.value = ['❌ Desconectado do WebSocket.'];
+    console.log('❌ Desconectado do WebSocket.');
   };
 
   socket.onerror = (error) => {
-    mensagens.value = ['⚠️ Erro no WebSocket'];
+    console.log('⚠️ Erro no WebSocket');
     console.error(error);
   };
+
+  // Carregar dados do localStorage, se existirem
+  const savedDadosAssociation = localStorage.getItem('dadosAssociation');
+  if (savedDadosAssociation) {
+    dadosAssociation.value = JSON.parse(savedDadosAssociation);
+  }
+
+  const savedDadosAuthentication = localStorage.getItem('dadosAuthentication');
+  if (savedDadosAuthentication) {
+    dadosAuthentication.value = JSON.parse(savedDadosAuthentication);
+  }
+
+  const savedDadosHandshake = localStorage.getItem('dadosHandshake');
+  if (savedDadosHandshake) {
+    dadosHandshake.value = JSON.parse(savedDadosHandshake);
+  }
 });
 
 </script>
