@@ -17,7 +17,7 @@ let dadosHandshake = ref([]);
 
 
 onMounted(() => {
-  socket = new WebSocket('ws://192.168.7.3:3000');
+  socket = new WebSocket('ws://localhost:3001');
 
   socket.onopen = () => {
     console.log('✅ Conectado ao WebSocket!');
