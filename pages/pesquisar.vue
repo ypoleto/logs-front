@@ -28,10 +28,21 @@
                             </el-select>
                         </el-form-item>
                     </el-col>
+                    <el-col class="mt-2" :xs="24" :sm="24" :md="12" :lg="12" :xl="8">
+                        <el-form-item label="Nome AP">
+                            <el-input placeholder="Digite um nome de AP" size="large"
+                                v-model="params.apName"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col class="mt-2" :xs="24" :sm="24" :md="12" :lg="12" :xl="8">
+                        <el-form-item label="MAC de Usuário">
+                            <el-input placeholder="Digite um MAC de usuário" size="large" v-model="params.userMac"></el-input>
+                        </el-form-item>
+                    </el-col>
                     <el-col v-if="params.categoria != 'associacao'" class="mt-2" :xs="24" :sm="24" :md="12" :lg="12"
                         :xl="8">
                         <el-form-item label="Usuário">
-                            <el-input size="large" v-model="params.usuario"></el-input>
+                            <el-input placeholder="Digite um nome de usuário" size="large" v-model="params.usuario"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col class="mt-2">
@@ -43,31 +54,17 @@
         </el-card>
 
         <el-card class="box-card" shadow="hover">
-            <el-table v-loading="loading" v-if="params.categoria == 'autenticacao'" :data="list" style="width: 100%">
-                <el-table-column prop="authApName" label="AP" />
-                <el-table-column prop="authUserName" label="User" />
-                <el-table-column prop="datetime" label="Hora" />
-                <el-table-column prop="authSsid" label="SSID" />
-                <el-table-column prop="authResult" label="Result" />
+            <el-table v-loading="loading" v-if="params.categoria" :data="list" style="width: 100%">
+                <el-table-column v-for="col in columns" :key="col.prop" :prop="col.prop" :label="col.label" />
             </el-table>
-            <el-table v-loading="loading" v-if="params.categoria == 'handshake'" :data="list" style="width: 100%">
-                <el-table-column prop="hsApName" label="AP" />
-                <el-table-column prop="hsUserName" label="User" />
-                <el-table-column prop="datetime" label="Hora" />
-                <el-table-column prop="hsSsid" label="SSID" />
-                <el-table-column prop="hsResult" label="Result" />
-            </el-table>
-            <el-table v-loading="loading" v-if="params.categoria == 'associacao'" :data="list" style="width: 100%">
-                <el-table-column prop="assocApName" label="AP" />
-                <el-table-column prop="assocUserName" label="User" />
-                <el-table-column prop="datetime" label="Hora" />
-                <el-table-column prop="assocSsid" label="SSID" />
-                <el-table-column prop="assocResult" label="Result" />
-            </el-table>
+            <div v-if="params.categoria == ''" class="text-gray-400 flex justify-center">
+                <h1>Realize uma pesquisa.</h1>
+            </div>
         </el-card>
 
         <el-pagination :page-sizes="[10, 50, 100]" :page-size="params.limit" background :current-page.sync="params.page"
-        layout="sizes, prev, pager, next" :total="total" @size-change="handleSizeChange" @current-change="handleCurrentChange">
+            layout="sizes, prev, pager, next" :total="total" @size-change="handleSizeChange"
+            @current-change="handleCurrentChange" hide-on-single-page>
         </el-pagination>
     </div>
 </template>
@@ -81,6 +78,8 @@ export default {
             date: [],
             params: {
                 usuario: '',
+                apName: '',
+                userMac: '',
                 categoria: '',
                 ssid: '',
                 dataInicio: '',
@@ -109,6 +108,85 @@ export default {
             loading: false,
         };
     },
+    computed: {
+        columns() {
+            const categoria = this.params.categoria;
+            const baseCols = [];
+
+            switch (categoria) {
+                case 'autenticacao':
+                    baseCols[0] = {
+                        prop: 'authApName',
+                        label: 'AP Name'
+                    };
+                    baseCols[1] = {
+                        prop: 'authUserName',
+                        label: 'User Name'
+                    };
+                    baseCols[2] = {
+                        prop: 'authUserMac',
+                        label: 'User MAC'
+                    };
+                    baseCols[3] = {
+                        prop: 'authSsid',
+                        label: 'SSID'
+                    };
+                    baseCols[4] = {
+                        prop: 'authResult',
+                        label: 'Result'
+                    };
+                    break;
+
+                case 'handshake':
+                    baseCols[0] = {
+                        prop: 'hsApName',
+                        label: 'AP Name'
+                    };
+                    baseCols[1] = {
+                        prop: 'hsUserName',
+                        label: 'User Name'
+                    };
+                    baseCols[2] = {
+                        prop: 'hsUserMac',
+                        label: 'User MAC'
+                    };
+                    baseCols[3] = {
+                        prop: 'hsSsid',
+                        label: 'SSID'
+                    };
+                    baseCols[4] = {
+                        prop: 'hsResult',
+                        label: 'Result'
+                    };
+                    break;
+
+                case 'associacao':
+                    baseCols[0] = {
+                        prop: 'assocApName',
+                        label: 'AP Name'
+                    };
+                    baseCols[1] = {
+                        prop: 'assocUserMac',
+                        label: 'User MAC'
+                    };
+                    baseCols[2] = {
+                        prop: 'assocSsid',
+                        label: 'SSID'
+                    };
+                    baseCols[3] = {
+                        prop: 'assocOfflineReason',
+                        label: 'Offline Reason'
+                    };
+                    break;
+
+                default:
+                    return [];
+            }
+
+
+            return baseCols;
+        }
+    },
     methods: {
         formatDate(date) {
             if (date && date.length === 2) {
@@ -118,14 +196,10 @@ export default {
                 const dataFimUtc = new Date(date[1]).toISOString();
                 this.params.dataFim = dataFimUtc;
 
-                console.log('datas', this.params);
-
-
             } else {
                 this.params.dataInicio = undefined;
                 this.params.dataFim = undefined;
             }
-            console.log(this.params);
         },
         cleanParams() {
             this.params = {
@@ -136,20 +210,44 @@ export default {
             this.date = []
         },
         handleSizeChange(data) {
-            console.log(data);
             this.params.limit = data
-            this.fetchHandshakes(this.params)
+            switch (this.params.categoria) {
+                case 'associacao':
+                    this.fetchAssociations(this.params)
+                    break;
+                case 'autenticacao':
+                    this.fetchAuthentications(this.params)
+                    break;
+                case 'handshake':
+                    this.fetchHandshakes(this.params)
+                    break;
+                default:
+                    break;
+            }
         },
         handleCurrentChange(data) {
             this.params.page = data
-            this.fetchHandshakes(this.params)
-            console.log(data);
+            switch (this.params.categoria) {
+                case 'associacao':
+                    this.fetchAssociations(this.params)
+                    break;
+                case 'autenticacao':
+                    this.fetchAuthentications(this.params)
+                    break;
+                case 'handshake':
+                    this.fetchHandshakes(this.params)
+                    break;
+                default:
+                    break;
+            }
         },
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     if (!this.params.ssid) delete this.params.ssid;
                     if (!this.params.usuario) delete this.params.usuario;
+                    if (!this.params.apName) delete this.params.apName;
+                    if (!this.params.userMac) delete this.params.userMac;
 
                     switch (this.params.categoria) {
                         case 'handshake':
@@ -171,7 +269,6 @@ export default {
             this.loading = true;
             axios.get('http://localhost:3000/handshake', { params })
                 .then((response) => {
-                    console.log('response', response);
                     this.list = response.data.data;
                     this.total = response.data.total
                 })
@@ -182,8 +279,34 @@ export default {
                     this.loading = false;
                 });
         },
-        fetchAssociations() { },
-        fetchAuthentications() { }
+        fetchAuthentications(params) {
+            this.loading = true;
+            axios.get('http://localhost:3000/authentication', { params })
+                .then((response) => {
+                    this.list = response.data.data;
+                    this.total = response.data.total
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+        },
+        fetchAssociations(params) {
+            this.loading = true;
+            axios.get('http://localhost:3000/association', { params })
+                .then((response) => {
+                    this.list = response.data.data;
+                    this.total = response.data.total
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+        }
     }
 };
 </script>

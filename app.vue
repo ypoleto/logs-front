@@ -4,7 +4,7 @@
     <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-menu-item index="0">Tabelas</el-menu-item>
       <el-menu-item index="1">Pesquisar</el-menu-item>
-      <el-menu-item index="2" disabled>Mapa</el-menu-item>
+      <el-menu-item index="2">Mapa</el-menu-item>
     </el-menu>
    </div>
     <main>
@@ -22,7 +22,7 @@
           '/pesquisar',
           '/mapa'
         ],
-        activeIndex: '1',
+        activeIndex: '0',
       };
     },
     methods: {
