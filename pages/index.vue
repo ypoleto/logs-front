@@ -24,7 +24,6 @@ onMounted(() => {
   };
 
   socket.onmessage = (event) => {
-    this.loading = false;
     try {
       const msg = JSON.parse(event.data);
       if (msg && typeof msg === 'object' && 'tipo' in msg && 'dados' in msg) {

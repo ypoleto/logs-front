@@ -53,12 +53,12 @@ onMounted(async () => {
   }).addTo(map)
 
   andar1 = L.layerGroup([
-    L.circleMarker([-24.060530, -52.386278], { color: 'blue', radius: 2 }).bindPopup('Andar 1 - Sala 101'),
-    L.circleMarker([-24.060430, -52.386078], { color: 'blue', radius: 2 }).bindPopup('Andar 1 - Sala 102')
+    L.circleMarker([-24.060530, -52.386278], { color: 'blue', radius: 1 }).bindPopup('Andar 1 - Sala 101'),
+    L.circleMarker([-24.060430, -52.386078], { color: 'blue', radius: 1 }).bindPopup('Andar 1 - Sala 102')
   ])
 
   andar2 = L.layerGroup([
-    L.circleMarker([-24.060630, -52.386278], { color: 'red', radius: 2 }).bindPopup('Andar 2 - Sala 201')
+    L.circleMarker([-24.060630, -52.386278], { color: 'green', radius: 2 }).bindPopup('Andar 2 - Sala 201')
   ])
 
   andar1.addTo(map)
