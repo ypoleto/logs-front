@@ -1,0 +1,299 @@
+{
+    "terreo": [
+        {
+            "nome": "BLOCO-A-AQUARIO",
+            "coordenadas": [
+                -24.061272, -52.386128
+            ]
+        },
+        {
+            "nome": "BLOCO-A-SL",
+            "coordenadas": [
+                -24.061380,
+                -52.386130
+            ]
+        },
+        {
+            "nome": "BLOCO-A-COGERH",
+            "coordenadas": [
+                -24.061641,
+                -52.385897
+            ]
+        },
+        {
+            "nome": "BLOCO-A-DIRPLAD",
+            "coordenadas": [
+                -24.061437,
+                -52.386028
+            ]
+        },
+        {
+            "nome": "BLOCO-A-EXTERNO",
+            "coordenadas": [
+                -24.061145069673767,
+                -52.38610359703594
+            ]
+        },
+        {
+            "nome": "BLOCO-B-B006",
+            "coordenadas": [
+                -24.060521,
+                -52.386248
+            ]
+        },
+        {
+            "nome": "BLOCO-B-TERREO",
+            "coordenadas": [
+                -24.060616,
+                -52.386391
+            ]
+        },
+        {
+            "nome": "BLOCO-C-C002",
+            "coordenadas": [
+                -24.060819,
+                -52.386181
+            ]
+        },
+        {
+            "nome": "BLOCO-C-C004",
+            "coordenadas": [
+                -24.060743,
+                -52.386090
+            ]
+        },
+        {
+            "nome": "BLOCO-D-BIBLIOTECA",
+            "coordenadas": [
+                -24.060963832133428,
+                -52.38583528449768
+            ]
+        },
+        {
+            "nome": "BLOCO-D-EAD",
+            "coordenadas": [
+                -24.061074,
+                -52.385988
+            ]
+        },
+        {
+            "nome": "BLOCO-E-COGETI",
+            "coordenadas": [
+                -24.061265,
+                -52.385878
+            ]
+        },
+        {
+            "nome": "BLOCO-E-DACOM",
+            "coordenadas": [
+                -24.061170,
+                -52.385739
+            ]
+        },
+        {
+            "nome": "BLOCO-E-HERBARIO",
+            "coordenadas": [
+                -24.061096,
+                -52.385626
+            ]
+        },
+        {
+            "nome": "BLOCO-F-TERREO",
+            "coordenadas": [
+                -24.061491,
+                -52.385689
+            ]
+        },
+        {
+            "nome": "BLOCO-F-NUPEA",
+            "coordenadas": [
+                -24.061368,
+                -52.385543
+            ]
+        },
+        {
+            "nome": "BLOCO-G-COEXP",
+            "coordenadas": [
+                -24.060714,
+                -52.385594
+            ]
+        },
+        {
+            "nome": "BLOCO-G-G006",
+            "coordenadas": [
+                -24.060665,
+                -52.385487
+            ]
+        },
+        {
+            "nome": "BLOCO-G-G008",
+            "coordenadas": [
+                -24.060599,
+                -52.385401
+            ]
+        },
+        {
+            "nome": "BLOCO-G-DAGEEA",
+            "coordenadas": [
+                -24.060540,
+                -52.385320
+            ]
+        },
+        {
+            "nome": "BLOCO-H-SALA",
+            "coordenadas": [
+                -24.061721,
+                -52.385570
+            ]
+        },
+        {
+            "nome": "BLOCO-H-H003",
+            "coordenadas": [
+                -24.061654,
+                -52.385417
+            ]
+        },
+        {
+            "nome": "BLOCO-HERBÁRIO",
+            "coordenadas": [
+                -24.061665,
+                -52.384891
+            ]
+        },
+        {
+            "nome": "CENTRO-CONVIVENCIA",
+            "coordenadas": [
+                -24.062035,
+                -52.385978
+            ]
+        },
+        {
+            "nome": "LAB-ESTRUTURAS",
+            "coordenadas": [
+                -24.061789,
+                -52.385878
+            ]
+        },
+        {
+            "nome": "RESTAURANTE",
+            "coordenadas": [
+                -24.062207998203235,
+                -52.385668930723945
+            ]
+        },
+        {
+            "nome": "SALA-EJS",
+            "coordenadas": [
+                -24.061022,
+                -52.386864
+            ]
+        },
+        {
+            "nome": "SALA-MANUTENCAO",
+            "coordenadas": [
+                -24.062521,
+                -52.386251
+            ]
+        }
+    ],
+    "andar1": [
+        {
+            "nome": "BLOCO-B-1ºANDAR",
+            "coordenadas": [
+                -24.060604,
+                -52.386383
+            ]
+        },
+        {
+            "nome": "BLOCO-B-B104",
+            "coordenadas": [
+                -24.060521,
+                -52.386243
+            ]
+        },
+        {
+            "nome": "BLOCO-C-C106",
+            "coordenadas": [
+                -24.060734,
+                -52.386079
+            ]
+        },
+        {
+            "nome": "BLOCO-D-D108",
+            "coordenadas": [
+                -24.060871,
+                -52.385817
+            ]
+        },
+        {
+            "nome": "BLOCO-E-ANFITEATRO",
+            "coordenadas": [
+                -24.061106,
+                -52.385605
+            ]
+        },
+        {
+            "nome": "BLOCO-E-E101",
+            "coordenadas": [
+                -24.061281,
+                -52.385812
+            ]
+        },
+        {
+            "nome": "BLOCO-E-E103",
+            "coordenadas": [
+                -24.061197,
+                -52.385755
+            ]
+        },
+        {
+            "nome": "BLOCO-F-2º",
+            "coordenadas": [
+                -24.061495,
+                -52.385731
+            ]
+        },
+        {
+            "nome": "BLOCO-F-F102",
+            "coordenadas": [
+                -24.061427,
+                -52.385629
+            ]
+        },
+        {
+            "nome": "BLOCO-G-1º",
+            "coordenadas": [
+                -24.060741,
+                -52.385599
+            ]
+        },
+        {
+            "nome": "BLOCO-G-COLIQ",
+            "coordenadas": [
+                -24.060667,
+                -52.385484
+            ]
+        },
+        {
+            "nome": "BLOCO-G-DAMAT",
+            "coordenadas": [
+                -24.060582,
+                -52.385355
+            ]
+        },
+        {
+            "nome": "BLOCO-H-DAHUM",
+            "coordenadas": [
+                -24.061659,
+                -52.385401
+            ]
+        },
+        {
+            "nome": "BLOCO-H-H108",
+            "coordenadas": [
+                -24.061561,
+                -52.385318
+            ]
+        }
+    ]
+}

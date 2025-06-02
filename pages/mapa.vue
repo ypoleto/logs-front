@@ -5,5 +5,5 @@
 </template>
 
 <script setup>
-import MapaLeaflet from './mapLeaflet.vue'
+import MapaLeaflet from '../components/mapLeaflet.vue'
 </script>
