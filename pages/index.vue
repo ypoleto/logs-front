@@ -17,7 +17,7 @@ let dadosHandshake = ref([]);
 
 
 onMounted(() => {
-  socket = new WebSocket('ws://localhost:3001');
+  socket = new WebSocket('ws://192.168.7.13:3001');
 
   socket.onopen = () => {
     console.log('✅ Conectado ao WebSocket!');
@@ -61,7 +61,6 @@ onMounted(() => {
     console.error(error);
   };
 
-  // Carregar dados do localStorage, se existirem
   const savedDadosAssociation = localStorage.getItem('dadosAssociation');
   if (savedDadosAssociation) {
     dadosAssociation.value = JSON.parse(savedDadosAssociation);

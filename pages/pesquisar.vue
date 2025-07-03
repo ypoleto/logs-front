@@ -36,13 +36,15 @@
                     </el-col>
                     <el-col class="mt-2" :xs="24" :sm="24" :md="12" :lg="12" :xl="8">
                         <el-form-item label="MAC de Usuário">
-                            <el-input placeholder="Digite um MAC de usuário" size="large" v-model="params.userMac"></el-input>
+                            <el-input placeholder="Digite um MAC de usuário" size="large"
+                                v-model="params.userMac"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col v-if="params.categoria != 'associacao'" class="mt-2" :xs="24" :sm="24" :md="12" :lg="12"
                         :xl="8">
                         <el-form-item label="Usuário">
-                            <el-input placeholder="Digite um nome de usuário" size="large" v-model="params.usuario"></el-input>
+                            <el-input placeholder="Digite um nome de usuário" size="large"
+                                v-model="params.usuario"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col class="mt-2">
@@ -135,6 +137,10 @@ export default {
                         prop: 'authResult',
                         label: 'Result'
                     };
+                    baseCols[5] = {
+                        prop: 'datetime',
+                        label: 'Date'
+                    };
                     break;
 
                 case 'handshake':
@@ -158,6 +164,10 @@ export default {
                         prop: 'hsResult',
                         label: 'Result'
                     };
+                    baseCols[5] = {
+                        prop: 'datetime',
+                        label: 'Date'
+                    };
                     break;
 
                 case 'associacao':
@@ -176,6 +186,10 @@ export default {
                     baseCols[3] = {
                         prop: 'assocOfflineReason',
                         label: 'Offline Reason'
+                    };
+                    baseCols[4] = {
+                        prop: 'datetime',
+                        label: 'Date'
                     };
                     break;
 
@@ -267,7 +281,7 @@ export default {
         },
         fetchHandshakes(params) {
             this.loading = true;
-            axios.get('http://localhost:3000/handshake', { params })
+            axios.get('http://192.168.7.13:3000/handshake', { params })
                 .then((response) => {
                     this.list = response.data.data;
                     this.total = response.data.total
@@ -281,7 +295,7 @@ export default {
         },
         fetchAuthentications(params) {
             this.loading = true;
-            axios.get('http://localhost:3000/authentication', { params })
+            axios.get('http://192.168.7.13:3000/authentication', { params })
                 .then((response) => {
                     this.list = response.data.data;
                     this.total = response.data.total
@@ -295,7 +309,7 @@ export default {
         },
         fetchAssociations(params) {
             this.loading = true;
-            axios.get('http://localhost:3000/association', { params })
+            axios.get('http://192.168.7.13:3000/association', { params })
                 .then((response) => {
                     this.list = response.data.data;
                     this.total = response.data.total
